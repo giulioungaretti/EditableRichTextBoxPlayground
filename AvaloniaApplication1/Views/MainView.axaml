@@ -1,37 +1,44 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:AvaloniaApplication1.ViewModels"
-             xmlns:c="clr-namespace:AvaloniaApplication1.Views"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaApplication1.Views.MainView"
-             x:DataType="vm:MainViewModel">
-	<Design.DataContext>
-		<!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-		<vm:MainViewModel />
-	</Design.DataContext>
-	<DockPanel LastChildFill="True">
-		<Border Height="25" Background="SkyBlue" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Top">
-			<TextBlock Foreground="Black">Dock = "Top"</TextBlock>
-		</Border>
-		<Border Height="25" Background="LemonChiffon" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Bottom">
-			<TextBlock Foreground="Black">Dock = "Bottom"</TextBlock>
-		</Border>
-		<Border Width="200" Background="PaleGreen" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Left">
-			<TextBlock Foreground="Black">Dock = "Left"</TextBlock>
-		</Border>
-		<Border Background="White" BorderBrush="Black" BorderThickness="1">
-			<StackPanel>
-				<c:CustomTextControl x:Name="TextEditor"
-									 Index="{Binding Index,Mode=TwoWay}" 
-									 Inlines="{Binding Sources, Mode=TwoWay}" >
-				</c:CustomTextControl>
-			<Button Command="{Binding ClearInlinesCommand}">Clear</Button>
-			<Button Command="{Binding AddInlineCommand}">Add</Button>
-			</StackPanel>
-		</Border>
-	</DockPanel>
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:AvaloniaApplication1.ViewModels"
+    xmlns:c="clr-namespace:AvaloniaApplication1.Views"
+    xmlns:views="clr-namespace:AvaloniaApplication.Views"
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+    x:Class="AvaloniaApplication1.Views.MainView"
+    x:DataType="vm:MainViewModel">
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+    <DockPanel LastChildFill="True">
+        <Border Height="25" Background="SkyBlue" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Top">
+            <TextBlock Foreground="Black">Dock = "Top"</TextBlock>
+        </Border>
+        <Border Height="25" Background="LemonChiffon" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Bottom">
+            <TextBlock Foreground="Black">Dock = "Bottom"</TextBlock>
+        </Border>
+        <Border Width="200" Background="PaleGreen" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Left">
+            <TextBlock Foreground="Black">Dock = "Left"</TextBlock>
+        </Border>
+        <Border Background="White" BorderBrush="Black" BorderThickness="1">
+            <StackPanel>
+                <Border BorderThickness="1" BorderBrush="red">
+                    <views:CustomTextControl x:Name="TextEditor"
+                                         EditCommand = "{Binding EditCommand}"
+                                         EditMode="{Binding Editing, Mode=TwoWay}"
+                                         Index="{Binding Index,Mode=TwoWay}"
+                                         Inlines="{Binding Sources, Mode=TwoWay}">
+                </views:CustomTextControl>
+                </Border>
+                <Button Command="{Binding ClearInlinesCommand}">Clear</Button>
+                <Button Command="{Binding AddInlineCommand}">Add</Button>
+                <Button Command="{Binding AddRunCommand}">Add</Button>
+                <TextBlock Text="{Binding Editing}"></TextBlock>
+                <TextBlock Text="{Binding Index}"></TextBlock>
+            </StackPanel>
+        </Border>
+    </DockPanel>
 
 </UserControl>

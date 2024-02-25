@@ -1,4 +1,7 @@
-﻿using Avalonia;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,6 +12,9 @@ namespace AvaloniaApplication1.ViewModels;
 public partial class MainViewModel : ViewModelBase
 {
     [ObservableProperty] private int index = 0;
+    [ObservableProperty] private int hit = 0;
+
+        
 
     [ObservableProperty] private bool editing = false;
 
@@ -20,11 +26,11 @@ public partial class MainViewModel : ViewModelBase
     [RelayCommand]
     private void AddInline()
     {
-        Sources.Add(new TextBox()
-        {
-            Text = "Input", BorderThickness = Avalonia.Thickness.Parse("0"), Margin = Avalonia.Thickness.Parse("0"),
-            Padding = Avalonia.Thickness.Parse("0"),
-        });
+        // Sources.Add(new TextBox()
+        // {
+        //     Text = "Input", BorderThickness = Avalonia.Thickness.Parse("0"), Margin = Avalonia.Thickness.Parse("0"),
+        //     Padding = Avalonia.Thickness.Parse("0"),
+        // });
         Sources.Add(new LineBreak());
     }
 
@@ -32,7 +38,6 @@ public partial class MainViewModel : ViewModelBase
     private void AddRun()
     {
         Sources.Add(new Run() { Text = "Run Text " });
-        Sources.Add(new LineBreak());
     }
 
     [RelayCommand]

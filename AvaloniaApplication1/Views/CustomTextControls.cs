@@ -6,14 +6,33 @@ using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Documents;
+using Avalonia.Controls.Primitives.PopupPositioning;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 
 namespace AvaloniaApplication.Views;
 
 public class CustomTextControl : SelectableTextBlock
 {
+    private void computeInlineMap () {
+        var position = 0;
+        // we should create a mapping of where each inline starts 
+        foreach (Inline inline in Inlines)
+        {
+            Debug.WriteLine($"starting position of inline {position}");
+            inlinePositions[position] = inline;
+            if (inline is not Run r)
+            {
+                // TODO:is this true? Do they occpuy just one char in the text layout algo?
+                position += 1;
+                continue;
+            }
+            position += r.Text!.Length;
+        }
+    }
+
     public static readonly StyledProperty<ICommand> EditCommandProperty =
         AvaloniaProperty.Register<CustomTextControl, ICommand>(
             "EditCommand");
@@ -35,6 +54,24 @@ public class CustomTextControl : SelectableTextBlock
         get => GetValue(IndexProperty);
         set => SetValue(IndexProperty, value);
     }
+    
+    /// <summary>
+    /// hit StyledProperty definition
+    /// indicates where the cursor is hitting the text.
+    /// </summary>
+    public static readonly StyledProperty<int> HitProperty =
+        AvaloniaProperty.Register<CustomTextControl, int>(nameof(Hit));
+    
+    /// <summary>
+    /// Gets or sets the hit property. This StyledProperty
+    /// indicates where the cursor is hitting the text.
+    /// </summary>
+    public int Hit
+    {
+       get => this.GetValue(HitProperty);
+       set => SetValue(HitProperty, value);
+    }
+    
 
     public static readonly StyledProperty<bool> EditModeProperty =
         AvaloniaProperty.Register<CustomTextControl, bool>(nameof(EditMode), false);
@@ -47,55 +84,57 @@ public class CustomTextControl : SelectableTextBlock
 
     protected override Type StyleKeyOverride => typeof(SelectableTextBlock);
 
+    private Dictionary<int, Inline> inlinePositions = [];
     protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         Debug.WriteLine($"Pointer Pressed from:{e.Source}");
-        var inlinePositions = new Dictionary<int, Inline>();
-        var position = 0;
-
-        //TODO: decide if we need to handle non run inlines, memento, we are using this to find the inline by the closest key
-        // and turn it into a textbox, so we can edit it.
-        foreach (Inline inline in Inlines)
-        {
-            Debug.WriteLine($"starting position of inline {position}");
-            if (inline is not Run r)
-            {
-                continue;
-            }
-
-            inlinePositions[position] = inline;
-            position += r.Text!.Length;
-        }
+        computeInlineMap();
 
         var clickInfo = e.GetCurrentPoint(this);
         if (clickInfo.Properties.IsLeftButtonPressed)
         {
             var padding = Padding;
-            var point = e.GetPosition(this) - new Point(0, 0);
-            var hit = TextLayout.HitTestPoint(in point);
-            var charHit = hit.CharacterHit;
-            var index = charHit.FirstCharacterIndex + charHit.TrailingLength;
+            var index = getHitIndexFromPointer(e);
             Debug.WriteLine($"hit point {index}");
 
-            // find the inline by the closest key
-            // TODO: review semantics, inline are indexed by start position
-            var closestKey = inlinePositions.Keys.OrderBy(x => Math.Abs(x - index)).FirstOrDefault(0);
-            Debug.WriteLine($"closest key {closestKey}");
-            var currentInLine = inlinePositions[closestKey];
+            var currentInLine = getClostestInline(index, inlinePositions);
 
             // find the line index and textline
             // TODO: we don't use at the moment
             // var lineIndex = TextLayout.GetLineIndexFromCharacterIndex(index, charHit.TrailingLength > 0);
             // var textLine = TextLayout.TextLines[lineIndex];
-            Index = closestKey;
-            EditMode = true;
+            // // Index = closestKey;
+            // EditMode = true;
         }
 
         base.OnPointerPressed(e);
     }
 
+    
+    private int getHitIndexFromPointer (PointerEventArgs e){
+        var point = e.GetPosition(this) - new Point(0, 0);
+        var hit = TextLayout.HitTestPoint(in point);
+        var charHit = hit.CharacterHit;
+        var index = charHit.FirstCharacterIndex + charHit.TrailingLength;
+        return index;
+    }
+    
+    private Inline getClostestInline(int index, Dictionary<int, Inline> inlines){   
+        var closestKey = inlinePositions.Keys.OrderBy(x => Math.Abs(x - index)).FirstOrDefault(0);
+        Debug.WriteLine($"closest key {closestKey}");
+        Index = closestKey;
+        return inlinePositions[closestKey];
+    }
+
     protected override void OnPointerMoved(PointerEventArgs e)
     {
+        var index = getHitIndexFromPointer(e);
+        computeInlineMap();
+        var inline =  getClostestInline(index, inlinePositions);
+        if ( inline is Run r){
+            r.TextDecorations = Avalonia.Media.TextDecorations.Underline;
+        };
+        // get inline under the cursor ish.
         // if (SelectedText.Length != 0 )
         // {
         //     EditMode = false;
@@ -122,7 +161,7 @@ public class CustomTextControl : SelectableTextBlock
             }
             else
             {
-                EditCommand.Execute(null);
+                //EditCommand.Execute(null);
             }
         }
 

@@ -7,10 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication", "Aval
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication.Desktop", "AvaloniaApplication1.Desktop\AvaloniaApplication.Desktop.csproj", "{CB09EB22-041B-41E8-98DF-AFA3EB4B0A7A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication.iOS", "AvaloniaApplication1.iOS\AvaloniaApplication.iOS.csproj", "{4C43B1FB-7060-4987-9FD1-F0D33054B363}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication.Browser", "AvaloniaApplication1.Browser\AvaloniaApplication.Browser.csproj", "{F535BD77-F61B-4619-9C9F-FE6F81659F84}"
-EndProject
+#Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication.iOS", "AvaloniaApplication1.iOS\AvaloniaApplication.iOS.csproj", "{4C43B1FB-7060-4987-9FD1-F0D33054B363}"
+#EndProject
+#Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication.Browser", "AvaloniaApplication1.Browser\AvaloniaApplication.Browser.csproj", "{F535BD77-F61B-4619-9C9F-FE6F81659F84}"
+#EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

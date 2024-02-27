@@ -28,13 +28,15 @@
                     <views:CustomTextControl x:Name="TextEditor"
                                          EditCommand = "{Binding EditCommand}"
                                          Index="{Binding Index,Mode=TwoWay}"
+                                         CursorRelased="{Binding CursorRelased,Mode=TwoWay}"
                                          Inlines="{Binding Sources, Mode=TwoWay}">
                 </views:CustomTextControl>
                 </Border>
                 <StackPanel Orientation="Horizontal">
                     <Button Command="{Binding ClearInlinesCommand}">Clear</Button>
                     <Button Command="{Binding AddInlineCommand}">Add line break</Button>
-                    <Button Command="{Binding AddRunCommand}">Add run </Button>
+                    <Button Command="{Binding AddRunCommand}">Append text </Button>
+                    <Button Command="{Binding AddRunAtTwoCommand}">Add run </Button>
                 </StackPanel>
                 <TextBlock Text="{Binding Index}"></TextBlock>
             </StackPanel>

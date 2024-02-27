@@ -35,6 +35,25 @@ public class CustomTextControl : SelectableTextBlock
         set => SetValue(IndexProperty, value);
     }
 
+
+    /// <summary>
+    /// CursorRelased StyledProperty definition
+    /// </summary>
+    public static readonly StyledProperty<int?> CursorRelasedProperty =
+        AvaloniaProperty.Register<CustomTextControl, int?>(nameof(CursorRelased));
+
+    /// <summary>
+    /// Gets or sets the CursorRelased property. This StyledProperty
+    /// indicates where the cursor was released.
+    /// </summary>
+    public int? CursorRelased
+    {
+        get => this.GetValue(CursorRelasedProperty);
+        set => SetValue(CursorRelasedProperty, value);
+    }
+
+
+
     #endregion
 
     #region overrides
@@ -55,6 +74,7 @@ public class CustomTextControl : SelectableTextBlock
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
+        CursorRelased = getHitIndexFromPointer(e);
         base.OnPointerReleased(e);
     }
 

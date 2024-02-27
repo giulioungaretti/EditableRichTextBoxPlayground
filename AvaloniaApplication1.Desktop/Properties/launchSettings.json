@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AvaloniaApplication.Desktop": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

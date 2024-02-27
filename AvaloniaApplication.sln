@@ -7,10 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication", "Aval
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication.Desktop", "AvaloniaApplication1.Desktop\AvaloniaApplication.Desktop.csproj", "{CB09EB22-041B-41E8-98DF-AFA3EB4B0A7A}"
 EndProject
-#Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication.iOS", "AvaloniaApplication1.iOS\AvaloniaApplication.iOS.csproj", "{4C43B1FB-7060-4987-9FD1-F0D33054B363}"
-#EndProject
-#Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaApplication.Browser", "AvaloniaApplication1.Browser\AvaloniaApplication.Browser.csproj", "{F535BD77-F61B-4619-9C9F-FE6F81659F84}"
-#EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FsharpApp", "FsharpApp\FsharpApp.fsproj", "{10595C30-A086-4D44-92B5-906B3B88416A}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FsharpApp.Desktop", "FsharpApp.Desktop\FsharpApp.Desktop.fsproj", "{72B1CA2F-D510-4FD2-AA17-CD38770922EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,16 +25,14 @@ Global
 		{CB09EB22-041B-41E8-98DF-AFA3EB4B0A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB09EB22-041B-41E8-98DF-AFA3EB4B0A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB09EB22-041B-41E8-98DF-AFA3EB4B0A7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C43B1FB-7060-4987-9FD1-F0D33054B363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C43B1FB-7060-4987-9FD1-F0D33054B363}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C43B1FB-7060-4987-9FD1-F0D33054B363}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{4C43B1FB-7060-4987-9FD1-F0D33054B363}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C43B1FB-7060-4987-9FD1-F0D33054B363}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C43B1FB-7060-4987-9FD1-F0D33054B363}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{F535BD77-F61B-4619-9C9F-FE6F81659F84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F535BD77-F61B-4619-9C9F-FE6F81659F84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F535BD77-F61B-4619-9C9F-FE6F81659F84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F535BD77-F61B-4619-9C9F-FE6F81659F84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10595C30-A086-4D44-92B5-906B3B88416A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10595C30-A086-4D44-92B5-906B3B88416A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10595C30-A086-4D44-92B5-906B3B88416A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10595C30-A086-4D44-92B5-906B3B88416A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72B1CA2F-D510-4FD2-AA17-CD38770922EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72B1CA2F-D510-4FD2-AA17-CD38770922EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72B1CA2F-D510-4FD2-AA17-CD38770922EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72B1CA2F-D510-4FD2-AA17-CD38770922EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

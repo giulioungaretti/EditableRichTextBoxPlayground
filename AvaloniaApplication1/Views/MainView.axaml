@@ -27,9 +27,7 @@
                 <Border BorderThickness="1" BorderBrush="red">
                     <views:CustomTextControl x:Name="TextEditor"
                                          EditCommand = "{Binding EditCommand}"
-                                         EditMode="{Binding Editing, Mode=TwoWay}"
                                          Index="{Binding Index,Mode=TwoWay}"
-                                         Hit="{Binding Hit,Mode=TwoWay}"
                                          Inlines="{Binding Sources, Mode=TwoWay}">
                 </views:CustomTextControl>
                 </Border>
@@ -38,9 +36,7 @@
                     <Button Command="{Binding AddInlineCommand}">Add line break</Button>
                     <Button Command="{Binding AddRunCommand}">Add run </Button>
                 </StackPanel>
-                <TextBlock Text="{Binding Editing}"></TextBlock>
                 <TextBlock Text="{Binding Index}"></TextBlock>
-                <TextBlock Text="{Binding Hit}"></TextBlock>
             </StackPanel>
         </Border>
     </DockPanel>

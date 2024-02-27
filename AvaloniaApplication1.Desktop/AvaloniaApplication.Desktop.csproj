@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
@@ -8,10 +8,16 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.1.999-cibuild0045336-beta" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.1.999-cibuild0045336-beta" />
+    <PackageReference Include="Avalonia" Version="11.1.999-cibuild0045346-beta" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.1.999-cibuild0045346-beta" />
   </ItemGroup>
 
   <ItemGroup>

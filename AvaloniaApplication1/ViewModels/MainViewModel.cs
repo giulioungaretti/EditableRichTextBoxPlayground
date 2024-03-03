@@ -69,6 +69,8 @@ public partial class MainViewModel : ViewModelBase
     }
     private void Sources_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
+        //TODO: is this really the best way? we are recomputing the whole tree every time
+        // we could impelment our own equality/identiy for the inlies? or use refs ?
         _inlineMap = computeInlineMap(_sources);
         //switch (e.Action)
         //{
